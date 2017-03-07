@@ -67,6 +67,11 @@ class Client(object):
 
         return response.json()
 
+    def get_leader(self):
+        response = self._rpc.http_req(http.get, 'v2/leader')
+
+        return response.json()
+
     def get_app(self, app_id, version=None):
         """Returns a representation of the requested application version. If
         version is None the return the latest version.

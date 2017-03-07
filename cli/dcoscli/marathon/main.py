@@ -211,6 +211,11 @@ def _cmds():
             function=subcommand.about),
 
         cmds.Command(
+            hierarchy=['marathon', 'leader'],
+            arg_keys=[],
+            function=subcommand.leader),
+
+        cmds.Command(
             hierarchy=['marathon'],
             arg_keys=['--config-schema', '--info'],
             function=_marathon)
@@ -351,6 +356,17 @@ class MarathonSubcommand(object):
         client = self._create_marathon_client()
 
         emitter.publish(client.get_about())
+        return 0
+
+    def leader(self):
+        """
+        :returns: process return code
+        :rtype: int
+        """
+
+        client = self._create_marathon_client()
+
+        emitter.publish(client.get_leader())
         return 0
 
     def add(self, app_resource):
