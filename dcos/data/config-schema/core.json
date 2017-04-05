@@ -19,6 +19,12 @@
             "type": "boolean",
             "default": false
         },
+        "disable_custom_subcommands": {
+            "description": "Whether to disable custom subcommands; useful for testing for example",
+            "title": "Disable custom subcommands",
+            "type": "boolean",
+            "default": false
+        },
         "mesos_master_url": {
             "description": "Mesos master URL. Must be set in format: \"http://host:port\"",
             "format": "uri",

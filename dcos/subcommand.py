@@ -95,8 +95,13 @@ def list_paths():
     """
 
     subcommands = []
-    for package in distributions():
-        subcommands += get_package_commands(package)
+
+    toml_config = config.get_config(True)
+    disable_custom_subcommands = config.get_config_val(
+        "core.disable_custom_subcommands", toml_config)
+    if not disable_custom_subcommands:
+        for package in distributions():
+            subcommands += get_package_commands(package)
 
     return subcommands
 
